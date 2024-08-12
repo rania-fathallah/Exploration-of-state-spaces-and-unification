@@ -1,0 +1,23 @@
+public class Fonction implements Unifiable {
+    private String functionName;
+
+    public Fonction(String functionName) {
+        this.functionName = functionName;
+    }
+
+    public String toString() {
+        return functionName;
+    }
+
+    public SubstitutionSet unify(Unifiable p, SubstitutionSet s) {
+        if (this == p)
+            return new SubstitutionSet(s);
+        if (p instanceof Variable)
+            return p.unify(this, s);
+        return null;
+    }
+
+    public PCExpression replaceVariables(SubstitutionSet s) {
+        return this;
+    }
+}
